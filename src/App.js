@@ -4,8 +4,8 @@ import Generate from './Components/Generate'
 
 function App() {
   return (
-    <div>
-      <Generate topic="a gorilla" modifier="wearing a purple dress"/>
+    <div className="App-header">
+      <Generate topic="" modifier="" />
     </div>
   );
 }
