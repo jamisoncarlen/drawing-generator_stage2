@@ -1,16 +1,19 @@
 import React from 'react';
 export default class Generate extends React.Component {
 
+    //construct props
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.state = { topic: "a gorilla", modifier: "with purple hair" };
     }
 
+    //event handler
     handleClick(evt) {
 
         const id = evt.target.getAttribute("id");
         console.log("id: " + id)
+        
         //create topics array
         let topics = require('../topics.json');
 
@@ -34,8 +37,12 @@ export default class Generate extends React.Component {
         if(id==="topic"){
             //set topic state
             this.setState({ topic: this.setState.topic = topics[h] });
-        } else {
+        } else if(id==="modifier"){
             //set modifier state
+            this.setState({ modifier: this.setState.modifier = modifiers[j] });
+        } else{
+            //change both
+            this.setState({ topic: this.setState.topic = topics[h] });
             this.setState({ modifier: this.setState.modifier = modifiers[j] });
         }
     }
@@ -44,6 +51,9 @@ export default class Generate extends React.Component {
         return (
             <div>
                 <h1>You must draw {this.state.topic} {this.state.modifier}</h1>
+
+                {/* make changes to prompt */}
+                <button id="both" onClick={this.handleClick.bind(this.state.both)}>New Prompt</button>
                 <button id="topic" onClick={this.handleClick.bind(this.state.topic)}>New Topic</button>
                 <button id="modifier" onClick={this.handleClick.bind(this.state.modifier)}>New Modifier</button>
             </div>
